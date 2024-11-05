@@ -1,2 +1,7 @@
+Display
+	Window
+	11/5/24 Stretch Mode to viewport
+
+
 Textures
 	11/5/24 Rendering -> Nearest
