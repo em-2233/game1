@@ -1,8 +1,6 @@
 extends CharacterBody2D
 
-@export var speed := 75.0
-@export var acceleration := 1000.0  # How quickly the character reaches full speed
-
+@export var speed := 150
 # Velocity that will gradually increase/decrease
 var current_velocity := Vector2.ZERO
 
