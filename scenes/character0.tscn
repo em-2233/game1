@@ -1,14 +1,38 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxd87h10lytge"]
+[gd_scene load_steps=11 format=3 uid="uid://bxd87h10lytge"]
 
 [ext_resource type="Texture2D" uid="uid://buvk5mgdjfn6j" path="res://assets/sprites/pixilSprites/frontHead.png" id="1_26qlb"]
 [ext_resource type="Script" path="res://scripts/character_body_2d.gd" id="1_ko3l1"]
 [ext_resource type="Texture2D" uid="uid://cg6x6mjupo4es" path="res://assets/sprites/pixilSprites/frontLeg.png" id="2_rtla3"]
 [ext_resource type="Texture2D" uid="uid://dba0uyjwfxmr5" path="res://assets/sprites/pixilSprites/frontTorso.png" id="3_2wl4u"]
+[ext_resource type="Texture2D" uid="uid://on5qnpeeneya" path="res://assets/sprites/pixilSprites/pixil-layer-Front Leg.png" id="4_7m3tc"]
 [ext_resource type="Texture2D" uid="uid://chfvdp517tpnv" path="res://assets/sprites/pixilSprites/frontArm.png" id="4_8b6vk"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xr1at"]
-radius = 4.0
-height = 20.0
+[sub_resource type="Animation" id="Animation_m7pds"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/LegL:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/LegR:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -4)]
+}
 
 [sub_resource type="Animation" id="Animation_x241j"]
 resource_name = "walk"
@@ -38,47 +62,19 @@ tracks/1/keys = {
 "values": [Vector2(0, -5), Vector2(0, -3)]
 }
 
-[sub_resource type="Animation" id="Animation_m7pds"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Node2D/LegL:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -4)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Node2D/LegR:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -4)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1ljor"]
 _data = {
 "RESET": SubResource("Animation_m7pds"),
 "walk": SubResource("Animation_x241j")
 }
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
-scale = Vector2(4, 4)
-script = ExtResource("1_ko3l1")
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xr1at"]
+radius = 3.5
+height = 7.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, 2)
-shape = SubResource("CapsuleShape2D_xr1at")
+[node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_ko3l1")
 
 [node name="Node2D" type="Node2D" parent="."]
 
@@ -97,7 +93,7 @@ texture = ExtResource("4_8b6vk")
 
 [node name="LegL" type="Sprite2D" parent="Node2D"]
 position = Vector2(0, -4)
-texture = ExtResource("2_rtla3")
+texture = ExtResource("4_7m3tc")
 
 [node name="LegR" type="Sprite2D" parent="Node2D"]
 position = Vector2(0, -4)
@@ -105,7 +101,7 @@ rotation = 3.14159
 scale = Vector2(1, -1)
 texture = ExtResource("2_rtla3")
 
-[node name="Torso" type="Sprite2D" parent="."]
+[node name="Torso" type="Sprite2D" parent="Node2D"]
 position = Vector2(0, -4)
 texture = ExtResource("3_2wl4u")
 
@@ -113,4 +109,7 @@ texture = ExtResource("3_2wl4u")
 libraries = {
 "": SubResource("AnimationLibrary_1ljor")
 }
-autoplay = "walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8.5)
+shape = SubResource("CapsuleShape2D_xr1at")
