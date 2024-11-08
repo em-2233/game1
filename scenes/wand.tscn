@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d11373juxrrgw"]
+
+[ext_resource type="Script" path="res://scripts/wand.gd" id="1_xkwwj"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Wand" type="Node2D" parent="."]
+script = ExtResource("1_xkwwj")

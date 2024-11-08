@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 		position = lerp(position, driftDirection , delta * 3)
 		
 # Toggles mouse visibility with ESC key
-func _input(event):
+func _input(_event):
 	if Input.is_key_pressed(KEY_ESCAPE):
 		if(mouseHidden):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
