@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://d11373juxrrgw"]
+[gd_scene load_steps=3 format=3 uid="uid://d11373juxrrgw"]
 
 [ext_resource type="Script" path="res://scripts/wand.gd" id="1_xkwwj"]
+[ext_resource type="Texture2D" uid="uid://c4aygs31lgtbs" path="res://assets/sprites/leg.png" id="2_o0d2h"]
 
-[node name="Main" type="Node2D"]
-
-[node name="Wand" type="Node2D" parent="."]
+[node name="Wand" type="Node2D"]
 script = ExtResource("1_xkwwj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-33, -1.5)
+rotation = -1.57079
+scale = Vector2(1, 3)
+texture = ExtResource("2_o0d2h")

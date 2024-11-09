@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxd87h10lytge"]
+[gd_scene load_steps=14 format=3 uid="uid://bxd87h10lytge"]
 
 [ext_resource type="Texture2D" uid="uid://buvk5mgdjfn6j" path="res://assets/sprites/pixilSprites/frontHead.png" id="1_26qlb"]
 [ext_resource type="Script" path="res://scripts/character_body_2d.gd" id="1_ko3l1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dba0uyjwfxmr5" path="res://assets/sprites/pixilSprites/frontTorso.png" id="3_2wl4u"]
 [ext_resource type="Texture2D" uid="uid://on5qnpeeneya" path="res://assets/sprites/pixilSprites/pixil-layer-Front Leg.png" id="4_7m3tc"]
 [ext_resource type="Texture2D" uid="uid://chfvdp517tpnv" path="res://assets/sprites/pixilSprites/frontArm.png" id="4_8b6vk"]
+[ext_resource type="Texture2D" uid="uid://bdjgowsuedii1" path="res://assets/sprites/pixilSprites/pixil-layer-7.png" id="7_6kqw8"]
 
 [sub_resource type="Animation" id="Animation_m7pds"]
 length = 0.001
@@ -72,11 +73,27 @@ _data = {
 radius = 3.5
 height = 7.0
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8ffb"]
+atlas = ExtResource("7_6kqw8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1yima"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8ffb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_ko3l1")
 
 [node name="Node2D" type="Node2D" parent="."]
+visible = false
 
 [node name="Head" type="Sprite2D" parent="Node2D"]
 position = Vector2(0, -4)
@@ -111,5 +128,9 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 8.5)
+position = Vector2(0.5, 8.5)
 shape = SubResource("CapsuleShape2D_xr1at")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -4)
+sprite_frames = SubResource("SpriteFrames_1yima")

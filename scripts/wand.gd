@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var camera : Camera2D
 @onready var main = get_tree().get_root().get_node("demoMain")
 @onready var projectile = load("res://scenes/projectile.tscn")
 var x = 5
@@ -8,6 +9,8 @@ var t = true
 func _ready() -> void:
 	pass # Replace with function body.
 
+func _process(delta: float) -> void:
+	look_at(camera.global_position)
 
 func shoot():
 	var instance = projectile.instantiate()
