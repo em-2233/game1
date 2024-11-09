@@ -7,10 +7,10 @@ var current_velocity := Vector2.ZERO
 func _process(delta: float) -> void:
 	# Get the input direction vector directly
 	var input_direction = Vector2(
-		int(Input.is_action_pressed("ui_right"))
-		 - int(Input.is_action_pressed("ui_left")),
-		int(Input.is_action_pressed("ui_down"))
-		 - int(Input.is_action_pressed("ui_up"))
+		int(Input.is_action_pressed("d"))
+		 - int(Input.is_action_pressed("a")),
+		int(Input.is_action_pressed("s"))
+		 - int(Input.is_action_pressed("w"))
 	)
 
 	input_direction = input_direction.normalized()
@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 
 
 	# Apply the smoothed velocity
-	self.velocity = current_velocity
+	velocity = current_velocity
 	move_and_slide()
 
 ## Could be used for slippery surfaces
