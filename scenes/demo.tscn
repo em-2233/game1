@@ -60,11 +60,10 @@ position = Vector2(-36, -19)
 [node name="CharacterBody2D" parent="." instance=ExtResource("4_ok1j3")]
 position = Vector2(136, 23)
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" node_paths=PackedStringArray("player")]
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 zoom = Vector2(1.5, 1.5)
 position_smoothing_speed = 3.0
 script = ExtResource("5_u1flx")
-player = NodePath("..")
 
 [node name="Main" parent="." instance=ExtResource("6_mpd16")]
 position = Vector2(-146, 17)

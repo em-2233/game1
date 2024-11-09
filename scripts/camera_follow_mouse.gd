@@ -1,31 +1,18 @@
-# Drifts the camera towards the mouse relative to the player
+# Drifts the camera with respect to the mouse position
 extends Camera2D
 
-@export var player : CharacterBody2D
-@export var max_drift : float = 30
-var player_position : Vector2
-var mouse_position : Vector2
-var drift_direction : Vector2
 var combat_mode : bool = false
-
-func _ready() -> void:
-	pass
-
 
 func _process(delta: float) -> void:
 	# Camera drift logic
 	if combat_mode:
-		if player:
-			player_position = player.global_position
-			mouse_position = get_global_mouse_position()
-			drift_direction = mouse_position - player_position
-			if drift_direction.length() > max_drift:
-				drift_direction = drift_direction.normalized() * max_drift
+		position = lerp(position, get_local_mouse_position()/4, delta * 2)
+	else:
+		position = lerp(position, Vector2(0,0), delta * 3)
 		
-			position = lerp(position, drift_direction , delta * 3)
 	position_smoothing_enabled = not combat_mode
 		
-# Toggles mouse visibility with ESC key
+# Toggles combat_mode with SPACE
 func _input(event):
 	if event.is_action_pressed('space'):
 		if(combat_mode):
