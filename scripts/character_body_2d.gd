@@ -4,13 +4,13 @@ extends CharacterBody2D
 # Velocity that will gradually increase/decrease
 var current_velocity := Vector2.ZERO
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Get the input direction vector directly
 	var input_direction = Vector2(
-		int(Input.is_action_pressed("d"))
-		 - int(Input.is_action_pressed("a")),
-		int(Input.is_action_pressed("s"))
-		 - int(Input.is_action_pressed("w"))
+		int(Input.is_action_pressed("d")) -
+				int(Input.is_action_pressed("a")),
+		int(Input.is_action_pressed("s")) -
+				int(Input.is_action_pressed("w"))
 	)
 
 	input_direction = input_direction.normalized()

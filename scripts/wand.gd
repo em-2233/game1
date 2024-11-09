@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var main = get_tree().get_root().get_node("demoMainCHANGEME")
+@onready var main = get_tree().get_root().get_node("demoMain")
 @onready var projectile = load("res://scenes/projectile.tscn")
 var x = 5
 var t = true
@@ -12,8 +12,8 @@ func _ready() -> void:
 func shoot():
 	var instance = projectile.instantiate()
 	instance.dir = rotation
-	instance.spawnPos = global_position
-	instance.spawnRot = rotation
+	instance.spawn_pos = global_position
+	instance.spawn_rot = rotation
 	main.add_child.call_deferred(instance)
 
 func _input(event: InputEvent) -> void:

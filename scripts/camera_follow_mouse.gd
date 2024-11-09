@@ -2,12 +2,11 @@
 extends Camera2D
 
 @export var player : CharacterBody2D
-@export var maxDrift : float = 30
-var playerPosition : Vector2
-var mousePosition : Vector2
-var driftDirection : Vector2
-var mouseHidden : bool = true
-var combatMode : bool = false
+@export var max_drift : float = 30
+var player_position : Vector2
+var mouse_position : Vector2
+var drift_direction : Vector2
+var combat_mode : bool = false
 
 func _ready() -> void:
 	pass
@@ -15,25 +14,23 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	# Camera drift logic
-	if combatMode:
+	if combat_mode:
 		if player:
-			playerPosition = player.global_position
-			mousePosition = get_global_mouse_position()
-			driftDirection = mousePosition - playerPosition
-			if driftDirection.length() > maxDrift:
-				driftDirection = driftDirection.normalized() * maxDrift
+			player_position = player.global_position
+			mouse_position = get_global_mouse_position()
+			drift_direction = mouse_position - player_position
+			if drift_direction.length() > max_drift:
+				drift_direction = drift_direction.normalized() * max_drift
 		
-			position = lerp(position, driftDirection , delta * 3)
-	position_smoothing_enabled = !combatMode
+			position = lerp(position, drift_direction , delta * 3)
+	position_smoothing_enabled = not combat_mode
 		
 # Toggles mouse visibility with ESC key
 func _input(event):
 	if event.is_action_pressed('space'):
-		if(mouseHidden):
+		if(combat_mode):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			mouseHidden = false
-			combatMode = false
+			combat_mode = false
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-			mouseHidden = true
-			combatMode = true
+			combat_mode = true
