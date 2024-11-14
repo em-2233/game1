@@ -2,14 +2,10 @@ extends Node2D
 
 @export var camera : Camera2D
 @onready var main = get_tree().get_root().get_node("demoMain")
-@onready var projectile = load("res://scenes/projectile.tscn")
-var x = 5
-var t = true
-
-func _ready() -> void:
-	pass # Replace with function body.
+@onready var projectile = preload("res://scenes/projectile.tscn")
 
 func _process(_delta: float) -> void:
+	# aims wand at mouse
 	look_at(get_global_mouse_position())
 
 func shoot():
