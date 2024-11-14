@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://xmdg1vycw17k"]
+[gd_scene load_steps=10 format=3 uid="uid://bt6rkjlk2kvwk"]
 
-[ext_resource type="Script" path="res://scripts/blockguy.gd" id="1_u20nh"]
-[ext_resource type="Texture2D" uid="uid://4o5qnbxpmdc2" path="res://assets/sprites/body.png" id="2_g2imo"]
-[ext_resource type="Texture2D" uid="uid://c4aygs31lgtbs" path="res://assets/sprites/leg.png" id="3_7t7an"]
-[ext_resource type="PackedScene" uid="uid://bctnhj6qoiq0y" path="res://scenes/health_component.tscn" id="4_id8xg"]
-[ext_resource type="PackedScene" uid="uid://dde3sxunlfbtw" path="res://scenes/hitbox_component.tscn" id="5_i5ymb"]
+[ext_resource type="Texture2D" uid="uid://4o5qnbxpmdc2" path="res://assets/sprites/body.png" id="1_rd5uj"]
+[ext_resource type="Texture2D" uid="uid://c4aygs31lgtbs" path="res://assets/sprites/leg.png" id="2_bofiy"]
+[ext_resource type="PackedScene" uid="uid://bctnhj6qoiq0y" path="res://scenes/health_component.tscn" id="3_hukcv"]
+[ext_resource type="PackedScene" uid="uid://dde3sxunlfbtw" path="res://scenes/hitbox_component.tscn" id="4_yt53i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l64rc"]
 
 [sub_resource type="Animation" id="Animation_6vrr2"]
 length = 0.001
@@ -116,15 +117,17 @@ _data = {
 "walk": SubResource("Animation_tyo2c")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w78u2"]
-radius = 3.5
-height = 13.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_taps7"]
+radius = 4.0
+height = 12.0
 
-[node name="Blockguy" type="Node2D"]
-position = Vector2(200, 398)
-scale = Vector2(-2, 2)
-script = ExtResource("1_u20nh")
-velocity = 20
+[node name="Blockboy" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+
+[node name="Footbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+scale = Vector2(0.33, 0.15)
+shape = SubResource("CapsuleShape2D_l64rc")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -138,26 +141,27 @@ rotation = 0.0523599
 
 [node name="Head" type="Sprite2D" parent="Body"]
 position = Vector2(0, -7)
-texture = ExtResource("2_g2imo")
+texture = ExtResource("1_rd5uj")
 
 [node name="HipL" type="Node2D" parent="Body"]
 position = Vector2(-1.5, 4)
 
 [node name="LegL" type="Sprite2D" parent="Body/HipL"]
 position = Vector2(1.5, -11.5)
-texture = ExtResource("3_7t7an")
+texture = ExtResource("2_bofiy")
 
 [node name="HipR" type="Node2D" parent="Body"]
 position = Vector2(1.5, 4)
 
 [node name="LegR" type="Sprite2D" parent="Body/HipR"]
 position = Vector2(1.5, -11.5)
-texture = ExtResource("3_7t7an")
+texture = ExtResource("2_bofiy")
 
-[node name="HealthComponent" parent="." instance=ExtResource("4_id8xg")]
+[node name="HealthComponent" parent="." instance=ExtResource("3_hukcv")]
 
-[node name="HitboxComponent" parent="." instance=ExtResource("5_i5ymb")]
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_yt53i")]
+health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(0, -6.5)
-shape = SubResource("CapsuleShape2D_w78u2")
+position = Vector2(0, -7)
+shape = SubResource("CapsuleShape2D_taps7")

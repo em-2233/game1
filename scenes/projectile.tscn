@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ari31"]
 size = Vector2(2, 2)
 
-[node name="Area2D" type="Area2D"]
+[node name="Projectile" type="Area2D"]
 script = ExtResource("1_4xcyk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -15,4 +15,5 @@ shape = SubResource("RectangleShape2D_ari31")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_nflua")
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

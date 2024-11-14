@@ -55,7 +55,7 @@ tile_map_data = PackedByteArray("AAAHAPr/AQAQABAAAAAIAPr/AQAQABAAAAAIAPv/AQAQABA
 tile_set = SubResource("TileSet_xfrwe")
 
 [node name="Blockguy" parent="." instance=ExtResource("4_m4knl")]
-position = Vector2(-36, -19)
+position = Vector2(-164, 143)
 
 [node name="Player" parent="." instance=ExtResource("4_ok1j3")]
 position = Vector2(-122, -65)

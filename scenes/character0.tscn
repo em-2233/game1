@@ -127,7 +127,7 @@ libraries = {
 "": SubResource("AnimationLibrary_1ljor")
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Footbox" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 8.5)
 shape = SubResource("CapsuleShape2D_xr1at")
 
