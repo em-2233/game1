@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bt6rkjlk2kvwk"]
+[gd_scene load_steps=11 format=3 uid="uid://bt6rkjlk2kvwk"]
 
 [ext_resource type="Texture2D" uid="uid://4o5qnbxpmdc2" path="res://assets/sprites/body.png" id="1_rd5uj"]
+[ext_resource type="Script" path="res://scripts/blockboy.gd" id="1_yatbv"]
 [ext_resource type="Texture2D" uid="uid://c4aygs31lgtbs" path="res://assets/sprites/leg.png" id="2_bofiy"]
 [ext_resource type="PackedScene" uid="uid://bctnhj6qoiq0y" path="res://scenes/health_component.tscn" id="3_hukcv"]
 [ext_resource type="PackedScene" uid="uid://dde3sxunlfbtw" path="res://scenes/hitbox_component.tscn" id="4_yt53i"]
@@ -117,12 +118,14 @@ _data = {
 "walk": SubResource("Animation_tyo2c")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_taps7"]
-radius = 4.0
-height = 12.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hykn2"]
+size = Vector2(8, 13)
 
 [node name="Blockboy" type="CharacterBody2D"]
 scale = Vector2(2, 2)
+collision_layer = 32
+collision_mask = 1073741825
+script = ExtResource("1_yatbv")
 
 [node name="Footbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
@@ -158,10 +161,13 @@ position = Vector2(1.5, -11.5)
 texture = ExtResource("2_bofiy")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_hukcv")]
+position = Vector2(0, 0.5)
+max_health = 30.0
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_yt53i")]
+position = Vector2(0, 0.5)
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(0, -7)
-shape = SubResource("CapsuleShape2D_taps7")
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_hykn2")

@@ -7,6 +7,7 @@
 size = Vector2(2, 2)
 
 [node name="Projectile" type="Area2D"]
+scale = Vector2(4, 4)
 script = ExtResource("1_4xcyk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -16,4 +17,5 @@ shape = SubResource("RectangleShape2D_ari31")
 texture = ExtResource("2_nflua")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

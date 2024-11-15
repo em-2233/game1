@@ -90,7 +90,9 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(2, 2)
+collision_layer = 16
 script = ExtResource("1_ko3l1")
+speed = 100
 
 [node name="Node2D" type="Node2D" parent="."]
 visible = false

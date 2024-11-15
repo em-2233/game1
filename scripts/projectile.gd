@@ -1,6 +1,5 @@
 extends Area2D
 
-
 @export var speed : int = 250
 @export var damage : float = 10
 var spawn_pos : Vector2
@@ -22,11 +21,12 @@ func _physics_process(delta: float) -> void:
 	
 	
 func _on_body_entered(_body: Node2D) -> void:
-	# delete projectile on collision
+	# free projectile on collision
 	queue_free()
 
 
 func _on_area_entered(area: Area2D) -> void:
-	# if projectile hits a hitbox, do damage
+	# if projectile hits a hitbox, do damage, free projectile
 	if area is HitboxComponent:
 		area.damage(damage)
+		queue_free()
