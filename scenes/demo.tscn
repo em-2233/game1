@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://vuaathch1sbq"]
+[gd_scene load_steps=12 format=4 uid="uid://vuaathch1sbq"]
 
 [ext_resource type="Texture2D" uid="uid://di4tk7pbj3lw7" path="res://assets/sprites/walkGrass.png" id="2_v2wep"]
 [ext_resource type="Texture2D" uid="uid://bi3ip3w5rie27" path="res://assets/sprites/noWalkGrass.png" id="3_74mi0"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/camera_follow_mouse.gd" id="5_u1flx"]
 [ext_resource type="PackedScene" uid="uid://bt6rkjlk2kvwk" path="res://scenes/blockboy.tscn" id="6_cs6nb"]
 [ext_resource type="PackedScene" uid="uid://d11373juxrrgw" path="res://scenes/wand.tscn" id="6_mpd16"]
+[ext_resource type="PackedScene" uid="uid://bbx5gs3a5uuru" path="res://scenes/talking_shroom.tscn" id="7_ve7q1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xhd35"]
 texture = ExtResource("2_v2wep")
@@ -69,4 +70,8 @@ camera = NodePath("../Camera2D")
 
 [node name="Blockboy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_cs6nb")]
 position = Vector2(-253, -26)
+speed = 0.0
 target = NodePath("../Player")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("7_ve7q1")]
+position = Vector2(-49, -74)
